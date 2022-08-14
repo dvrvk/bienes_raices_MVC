@@ -29,6 +29,7 @@ class Router {
             $urlActual = explode('?',$urlActual)[0];
             $fn = $this->rutasGET[$urlActual] ?? null;
         } else {
+            $urlActual = explode('?',$urlActual)[0];
             $fn = $this->rutasPOST[$urlActual] ?? null;
         }
         

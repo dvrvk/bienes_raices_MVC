@@ -8,15 +8,20 @@
     class PropiedadControllers {
         public static function index(Router $router) { //Así me traigo el objeto de index.php
 
+            //Recuperar propiedades
             $propiedades = Propiedad::all(); //Importo use Model\Propiedad y uso all para coger todas.
             
+            //Recuperar vendedores
+            $vendedores = Vendedor::all();
+
             //Muestra mensaje condicional
             $resultado = $_GET['resultado'] ?? null; //revisa que haya un get, sino es null
             limpiarMensajes($resultado, 10);
 
             $router->render('propiedades/admin', [
                 'propiedades' => $propiedades,
-                'resultado' => $resultado
+                'resultado' => $resultado,
+                'vendedores' => $vendedores
             ]);
             //Llamo a la vista
         }
@@ -80,11 +85,64 @@
 
             // Arreglo con mensajes de errores
             $errores = Propiedad::getErrores();
+            
+            //Se ejecuta tras dar a enviar
+            if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                //Asignar atributos
+                $args = $_POST['propiedad'];
+
+                $propiedad->sincronizar($args);
+
+                //Validación de errores
+                $errores = $propiedad->validar();
+                
+                /*Subida de archivos*/
+                //1. Generar nombre único
+                $nombreImagen =md5(uniqid(rand(), true)) . ".jpg";
+
+                //2.Setear la imagen: Realiza un resize a la imagen con intervention/image
+                if($_FILES['propiedad']['tmp_name']['imagen']) {
+                    $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
+                    $propiedad->setImagen($nombreImagen); 
+                }
+                
+                if(empty($errores)){ 
+                    if($_FILES['propiedad']['tmp_name']['imagen']) {
+                        //Almacenar la imagen (si existe una imagen)
+                        $image->save(CARPETA_IMAGENES . $nombreImagen);
+                    }
+
+                    $propiedad->guardar();
+
+                }   
+
+            }
 
             $router->render('propiedades/actualizar', [
                 'propiedad' => $propiedad,
                 'vendedores' => $vendedores,
                 'errores' => $errores
             ]);
+        }
+
+        public static function eliminar() {
+            //Validación id botón eliminar
+            if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                
+                //Validar id
+                $id = $_POST['id'];
+                $id = filter_var($id, FILTER_VALIDATE_INT);
+
+                if ($id) {
+                    $tipo = $_POST['tipo'];
+
+                    if (validarTipoContenido($tipo)) {
+                        $propiedad = Propiedad::find($id);
+                        $propiedad->eliminar();
+                            
+                    }
+                } 
+            }
         }
     }

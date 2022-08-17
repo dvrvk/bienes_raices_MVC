@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\LoginControllers;
 use MVC\Router;
 use Controllers\PropiedadControllers;
 use Controllers\VendedorControllers;
@@ -34,4 +35,10 @@ $router->get('/entrada', [PaginasControllers::class, 'entrada']);
 $router->get('/contacto', [PaginasControllers::class, 'contacto']);
 $router->post('/contacto', [PaginasControllers::class, 'contacto']);
 
+//Login y autenticación
+$router->get('/login', [LoginControllers::class, 'login']);
+$router->post('/login', [LoginControllers::class, 'login']);
+$router->get('/logout', [LoginControllers::class, 'logout']);
+
 $router->comprobarRutas();
+

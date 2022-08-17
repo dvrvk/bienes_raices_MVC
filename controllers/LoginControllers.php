@@ -49,7 +49,5 @@ class LoginControllers {
         $_SESSION = []; //Cerramos sesión
 
         header('Location: /');
-
-        debuguear($_SESSION);
     }
 }

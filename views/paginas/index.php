@@ -1,18 +1,18 @@
 <main class="contenedor seccion">
-        <h1>Más Sobre Nosotros</h1>
+        <h2 data-cy="heading-nosotros">Más Sobre Nosotros</h2>
         <?php include 'iconos.php'; ?>
 
     </main>
 
     <section class="seccion contenedor">
-        <h2>Casas y Depas en Venta</h2>
+        <h2 data-cy="heading-propiedades">Casas y Depas en Venta</h2>
 
         <?php 
             include 'listado.php';
         ?>
 
         <div class="alinear-derecha">
-            <a href="/propiedades" class="boton-verde">Ver Todas</a>
+            <a href="/propiedades" class="boton-verde" data-cy="todas-propiedades">Ver Todas</a>
         </div>
 
     </section>

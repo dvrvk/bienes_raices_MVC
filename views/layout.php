@@ -49,7 +49,7 @@ if(!isset($inicio)) {
 
             <?php 
             if($inicio) {
-                echo "<h1>Venta de Propiedades y Apartamentos Exclusivos de Lujo</h1>";
+                echo "<h1 data-cy='heading-sitio'>Venta de Propiedades y Apartamentos Exclusivos de Lujo</h1>";
             }
             ?>
         </div>

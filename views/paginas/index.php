@@ -17,14 +17,14 @@
 
     </section>
 
-    <section class="imagen-contacto">
+    <section class="imagen-contacto" data-cy="imagen-contacto">
         <h2>Encuentra la casa de tus sueños</h2>
         <p>Llena el formulario de contacto y un asesor se pondrá en contacto contigo</p>
-        <a href="contacto.php" class="boton-amarillo">Contáctanos</a>
+        <a href="/contacto" class="boton-amarillo">Contáctanos</a>
     </section>
 
     <div class="contenedor seccion seccion-inferior">
-        <section class="blog">
+        <section class="blog" data-cy="blog">
             <h3>Nuestro Blog</h3>
 
             <article class="entrada-blog">
@@ -64,7 +64,7 @@
             </article>
         </section>
 
-        <section class="testimoniales">
+        <section class="testimoniales" data-cy="testimoniales">
             <h3>Testimoniales</h3>
             <div class="testimonial">
                 <blockquote>

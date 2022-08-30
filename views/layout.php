@@ -34,7 +34,7 @@ if(!isset($inicio)) {
                 </div>
                 <div class="derecha">
                     <img  class="dark-mode-boton" src="/build/img/dark-mode.svg">
-                    <nav class="navegacion">
+                    <nav class="navegacion" data-cy="navegacion-header">
                         <a href="/nosotros">Nosotros</a>
                         <a href="/propiedades">Anuncios</a>
                         <a href="/blog">Blog</a>
@@ -57,7 +57,7 @@ if(!isset($inicio)) {
     
     <?php echo $contenido; ?>
 
-    <footer class="footer seccion">
+    <footer class="footer seccion" data-cy="navegacion-footer">
         <div class="contenedor contenido-footer">
             <nav class="navegacion">
                 <a href="/nosotros">Nosotros</a>
